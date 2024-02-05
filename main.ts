@@ -1,12 +1,14 @@
-import DiscordJS from "discord.js";
-import dotenv from "dotenv";
-import { Octokit } from "@octokit/rest";
-import { getModal } from "./utils";
-import express from "express";
-dotenv.config();
+import DiscordJS from "npm:discord.js@14";
+import "https://deno.land/std@0.191.0/dotenv/load.ts";
+import { Octokit } from "https://esm.sh/octokit@2.0.19";
+import { getModal } from "./utils.ts";
+
+// @deno-types="npm:@types/express"
+import express from "npm:express@4";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Deno.env.get("PORT") || "3000";
+
 
 app.use(express.json());
 
@@ -24,7 +26,7 @@ const client = new DiscordJS.Client({
 
 client.on("ready", () => {
     console.log("issue bot ready");
-    const guildId = process.env.GUILD_ID || "";
+    const guildId = Deno.env.get("GUILD_ID") || "";
 
     const guild = client.guilds.cache.get(guildId);
 
@@ -54,14 +56,14 @@ client.on("interactionCreate", async (interaction) => {
         const issueTitle = fields.getField("issueTitle").value;
         const issueDescription = fields.getField("issueDescription").value;
         const octokit = new Octokit({
-            auth: process.env.GITHUB_ACCESS_TOKEN,
+            auth: Deno.env.get("GITHUB_ACCESS_TOKEN"),
             baseUrl: "https://api.github.com",
         });
 
         octokit.rest.issues
             .create({
-                owner: process.env.GITHUB_USERNAME || "",
-                repo: process.env.GITHUB_REPOSITORY || "",
+                owner: Deno.env.get("GITHUB_USERNAME") || "",
+                repo: Deno.env.get("GITHUB_REPOSITORY") || "",
                 title: issueTitle,
                 body: issueDescription,
             })
@@ -71,4 +73,4 @@ client.on("interactionCreate", async (interaction) => {
     }
 });
 
-client.login(process.env.BOT_TOKEN);
+client.login(Deno.env.get("BOT_TOKEN"));

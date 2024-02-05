@@ -3,7 +3,7 @@ import {
     ModalBuilder,
     TextInputBuilder,
     TextInputStyle,
-} from "discord.js";
+} from "npm:discord.js@14";
 
 export const getModal = (description: string) => {
     const modal = new ModalBuilder()

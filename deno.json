@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "esm:add": "deno run -A https://esm.sh/v135 add",
+    "esm:update": "deno run -A https://esm.sh/v135 update",
+    "esm:remove": "deno run -A https://esm.sh/v135 remove",
+    "run": "deno run --allow-net --allow-env --allow-read --allow-ffi main.ts"
+  },
+  "imports": {},
+  "scopes": {}
+}
