@@ -62,8 +62,8 @@ client.on("interactionCreate", async (interaction) => {
 
         octokit.rest.issues
             .create({
-                owner: Deno.env.get("GITHUB_USERNAME") || "",
-                repo: Deno.env.get("GITHUB_REPOSITORY") || "",
+                owner: Deno.env.get("USERNAME") || "",
+                repo: Deno.env.get("REPOSITORY_NAME") || "",
                 title: issueTitle,
                 body: issueDescription,
             })
