@@ -19,7 +19,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Create dot env file
-      - shell: bash
         run: |
           touch .env
           echo ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }} >> .env
