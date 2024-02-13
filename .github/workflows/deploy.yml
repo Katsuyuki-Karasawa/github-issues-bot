@@ -18,6 +18,16 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v3
 
+      - name: Create dot env file
+      - shell: bash
+        run: |
+          touch .env
+          echo ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }} >> .env
+          echo BOT_TOKEN=${{ secrets.BOT_TOKEN }} >> .env
+          echo GUILD_ID=${{ vars.GUILD_ID }} >> .env
+          echo GITHUB_USERNAME=${{ vars.GITHUB_USERNAME }} >> .env
+          echo GITHUB_REPOSITORY=${{ vars.GITHUB_REPOSITORY }} >> .env
+
       - name: Install Deno
         uses: denoland/setup-deno@v1
         with:

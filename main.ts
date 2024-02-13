@@ -56,7 +56,7 @@ client.on("interactionCreate", async (interaction) => {
         const issueTitle = fields.getField("issueTitle").value;
         const issueDescription = fields.getField("issueDescription").value;
         const octokit = new Octokit({
-            auth: Deno.env.get("GITHUB_ACCESS_TOKEN"),
+            auth: Deno.env.get("ACCESS_TOKEN"),
             baseUrl: "https://api.github.com",
         });
 
